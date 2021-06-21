@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<button id="rock" value="rock">rock</button>
+<button id="paper" value="rock">paper</button>
+<button id="scissors" value="scissors">scissors</button>
+<div id="score">Score <div id="playerScoreValue"></div><div id="computerScoreValue"></div></div> 
+<script> 
+let computerSelection = "nothing";
+let playerSelection = "alsonothing";
+let computerScore = 0;
+let playerScore = 0;
+let randomNumber = 0;
+
+
+//create a random number between 1-3
+function createRandomNumber() {
+    return randomNumber = (Math.floor(Math.random() * 3) + 1);
+    
+}
+//Create a function that randomly returns "rock", "paper", or "scissors"
+//wihout using arrays.
+function computerPlay() {
+    createRandomNumber();
+    if (randomNumber === 1 ){
+        return computerSelection = "rock";
+    }
+    else if (randomNumber === 2) {
+        return computerSelection = "paper";
+    }
+    else {
+        return computerSelection = "scissors";
+    }
+    console.log(computerSelection);
+}
+const btnRock = document.querySelector("#rock");
+btnRock.addEventListener('click',() => {
+    playerSelection = "rock";
+    playRound();
+});
+const btnPaper = document.querySelector("#paper");
+btnPaper.addEventListener('click',() => {
+    playerSelection = "paper";
+});
+const btnScissors = document.querySelector("#scissors");
+btnPaper.addEventListener('click',() => {
+    playerSelection = "scissors";
+});
+
+function getPlayerChoice() {
+   playerSelection = prompt("Please enter rock, paper or sissors!").toLowerCase();
+    if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
+        alert("Not valid! Please try again");
+    }
+    else {
+      return playerSelection;
+     
+}
+    console.log(playerSelection);
+}
+function playRound() {
+    computerPlay();
+    if (playerSelection === computerSelection) {
+        alert("It's a tie!");
+    }
+    else if(playerSelection === "rock" && computerSelection === "scissors" ||
+            playerSelection === "paper" && computerSelection === "rock" ||
+            playerSelection === "scissors" && computerSelection === "paper") {
+        playerScore += 1; 
+        document.getElementById("playerScoreValue").innerHTML = "Playerscore " + playerScore;       
+        alert("You win! " + playerSelection + " beats " + computerSelection + ". Your score is: " + playerScore);
+        return playerScore;
+    }
+    
+    else if(computerSelection === "scissors" && playerSelection === "paper" ||
+            computerSelection === "paper" && playerSelection === "rock" ||
+            computerSelection === "rock" && playerSelection === "scissors") {
+        computerScore +=1; 
+        document.getElementById("computerScoreValue").innerHTML = "Computerscore " + computerScore;         
+        alert("You lose! " + computerSelection + " beats " + playerSelection + ". Computerscore is: " + computerScore);
+        return computerScore;
+        
+    }
+    else {
+        alert("Test!");
+    }
+    
+}
+function game(){
+    let roundCount = 0;
+    playRound();
+    roundCount += 1;
+    playRound();
+    roundCount += 1;
+    playRound();
+    roundCount += 1;
+    playRound();
+    roundCount += 1;
+    playRound();
+    roundCount += 1;
+    if (playerScore > computerScore) {
+        alert("You won the game! Your score is " + playerScore + " to " + computerScore);
+    }
+    else if (playerScore == computerScore)    {
+        alert("It's a tie! Your score is " + playerScore + " to " + computerScore);
+    }
+    else {
+        alert("You lost the game! Your score is " + playerScore + " to " + computerScore);
+    }
+}
+
+</script>
+</body>
+</html>
