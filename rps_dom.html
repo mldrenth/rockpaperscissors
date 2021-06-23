@@ -47,6 +47,14 @@ const btnScissors = document.querySelector("#scissors");
 btnPaper.addEventListener('click',() => {
     playerSelection = "scissors";
 });
+function checkScore(playerScore,computerScore) {
+    if (playerScore === 5) {
+        alert("You won the game! Your score is " + playerScore + " to " + computerScore);  
+    }
+    else if (computerScore === 5) {
+        alert("You lost the game! Your score is " + playerScore + " to " + computerScore);
+    }
+}
 
 function getPlayerChoice() {
    playerSelection = prompt("Please enter rock, paper or sissors!").toLowerCase();
@@ -70,6 +78,9 @@ function playRound() {
         playerScore += 1; 
         document.getElementById("playerScoreValue").innerHTML = "Playerscore " + playerScore;       
         alert("You win! " + playerSelection + " beats " + computerSelection + ". Your score is: " + playerScore);
+        if (playerScore === 5) {
+        alert("You won the game! Your score is " + playerScore + " to " + computerScore);  
+    }
         return playerScore;
     }
     
@@ -79,13 +90,15 @@ function playRound() {
         computerScore +=1; 
         document.getElementById("computerScoreValue").innerHTML = "Computerscore " + computerScore;         
         alert("You lose! " + computerSelection + " beats " + playerSelection + ". Computerscore is: " + computerScore);
+        if (computerScore === 5) {
+        alert("You lost the game! Your score is " + playerScore + " to " + computerScore);
+    }
         return computerScore;
         
     }
     else {
         alert("Test!");
     }
-    
 }
 function game(){
     let roundCount = 0;
